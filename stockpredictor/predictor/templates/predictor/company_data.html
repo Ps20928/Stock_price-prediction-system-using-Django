@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Company Data{% endblock %}
+
+{% block content_header %}
+Company Data - Bear vs Bull
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form method="post" class="mb-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="symbol" class="form-label">Stock Symbol</label>
+            <input type="text" class="form-control" id="symbol" name="symbol" placeholder="Enter Stock Symbol">
+        </div>
+        <button type="submit" class="btn btn-primary">Check Trend</button>
+    </form>
+
+    {% if trend %}
+    <div class="alert alert-{{ trend.alert_class }}">
+        <h4>{{ trend.symbol }}</h4>
+        <p>Market Status: <strong>{{ trend.status }}</strong></p>
+        <p>Price Change: <strong>{{ trend.change }}%</strong> over the past month.</p>
+        <hr>
+        <h5>Additional Information</h5>
+        <p>Highest Price: <strong>${{ trend.high }}</strong></p>
+        <p>Lowest Price: <strong>${{ trend.low }}</strong></p>
+        <p>Average Price: <strong>${{ trend.average }}</strong></p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

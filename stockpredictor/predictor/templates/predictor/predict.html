@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Prediction Window{% endblock %}
+
+{% block content_header %}
+Stock Price Prediction
+{% endblock %}
+
+{% block content %}
+<div class="container form-container mt-3">
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="symbol" class="form-label">Stock Symbol</label>
+            {{ form.symbol }}
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Predict</button>
+    </form>
+</div>
+{% endblock %}
